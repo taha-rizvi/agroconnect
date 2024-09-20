@@ -1,106 +1,178 @@
-"use client"
-import { useState } from 'react'
-import { ChevronLeft } from "lucide-react"
-import Farmer from '../public/farmer.jpg';
-import Image from 'next/image';
+import Listings from "@/components/Listings"
+import Link from "next/link";
+import Image from "next/image";
+// import logo from '@/public/farmer.jpeg';
+export default function Home(){
 
-// Mock data for farmers
-const farmers = [
-  { id: 1, img: Farmer, name: "Amber Subhani", location: "Bijnor", crops: ["Corn", "Guava"], acreage: 500 },
-  { id: 2, img: Farmer, name: "Taha Rizvi", location: "Lucknow", crops: ["Grapes", "Cow Dunk"], acreage: 200 },
-  { id: 3, img: Farmer, name: "Sharjeel Afridi", location: "Shahjahanpur", crops: ["Sugarcane", "Wheat"], acreage: 1000 },
-]
+  return(
+    <>
+      <div className="min-h-screen bg-white">
+        <main className="pt-20 md:pt-24 lg:pt-32 pb-20 md:pb-20 lg:pb-20  px-4 md:px-6 bg-gray-100">
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center ">
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black">
+                AgroConnect
+              </h1>
+              <p className="text-lg md:text-xl lg:text-2xl text-black pt-5">
+              Our platform puts farmers directly in touch with buyers, making contract farming easy and transparent.<br></br> We ensure fair prices, secure payments, and hassle-free agreements, all backed by government support. Join us to stabilize your income and grow with confidence!
 
-export default function Component() {
-  const [selectedFarmer, setSelectedFarmer] = useState(null)
-  const [contractCrop, setContractCrop] = useState("")
-  const [contractDetails, setContractDetails] = useState("")
 
-  const handleSelectFarmer = (farmer) => {
-    setSelectedFarmer(farmer)
-    setContractCrop("")
-    setContractDetails("")
-  }
+              </p>
+              <button className="bg-[#4CAF4F] px-4 py-2 text-white rounded-lg">
+                <Link href="#">
+                  KisanAi
+                </Link>
+              </button>
+            </div>
+            <div className="flex justify-center">
+              <Image
+                alt="Company Design Logo"
+                height="400"
+                src="/farmer.webp"
+                width="400"
+              />
+            </div>
+          </section>
+        </main>
+        <main className="pt-12 md:pt-16 pb-20 md:pb-24 lg:pb-32 lg:pt-24 px-4 md:px-6 bg-white">
+          <section className="">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center">
+                <h2 className="text-3xl font-extrabold text-gray-900">
+                  Key Features
+                </h2>
+                <p className="mt-4 text-lg text-gray-500">
+                  Discover the features that make our product stand out.
+                </p>
+              </div>
 
-  const handleSubmitContract = (e) => {
-    e.preventDefault()
-    alert(`Contract submitted for ${selectedFarmer.name} - Crop: ${contractCrop}, Details: ${contractDetails}`)
-    setSelectedFarmer(null)
-    setContractCrop("")
-    setContractDetails("")
-  }
-
-  return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Farmer Marketplace</h1>
-      {!selectedFarmer ? (
-        <div className="flex md:flex-col gap-4">
-          {farmers.map((farmer) => (
-            <div key={farmer.id} className="flex gap-10 border p-4 rounded shadow">
-              <Image src={farmer.img} alt='farmer-image' className='h-fit w-[300px]'/>
-              <div className='flex flex-col gap-2'>
-                <div>
-                  <h3 className="text-3xl font-bold">{farmer.name}</h3>
-                  <p>{farmer.location}</p>
-                </div>
-                <div>
-                  <p className='font-medium'>Crops: <span className='text-gray-800 font-normal'>{farmer.crops.join(", ")}</span></p>
-                  <p className='font-medium'>Acreage: <span className='text-gray-800 font-normal'>{farmer.acreage}</span></p>
-                  <p className='text-blue-500  cursor-pointer hover:underline'>View location on map</p>
-                </div>
-                <div>
-                  <button onClick={() => handleSelectFarmer(farmer)} className='bg-green-500 text-white px-2 py-3 rounded-md'>View Details</button>
+              <div className="mt-10 flex justify-center">
+                <div className="flex space-x-8">
+                  <div className="flex items-center">
+                    <Image
+                      height="50"
+                      width="50"
+                      src="/artificial-intelligence.png"
+                      alt="Feature 1"
+                    />
+                    <p className="ml-2 font-medium text-gray-900"></p>
+                  </div>
+                  <div className="flex items-center">
+                    <Image
+                      height="50"
+                      width="50"
+                      src="/communication.png"
+                      alt="Feature 2"
+                    />
+                    <p className="ml-2 font-medium text-gray-900"></p>
+                  </div>
+                  <div className="flex items-center">
+                    <Image
+                      height="50"
+                      width="50"
+                      src="/marketplace.png"
+                      alt="Feature 3"
+                    />
+                    <p className="ml-2 font-medium text-gray-900"></p>
+                  </div>
+                  <div className="flex items-center">
+                    <Image
+                      height="50"
+                      width="50"
+                      src="/play.png"
+                      alt="Feature 4"
+                    />
+                    <p className="ml-2 font-medium text-gray-900"></p>
+                  </div>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      ) : (
-        <div>
-          <button onClick={() => setSelectedFarmer(null)} className="bg-gray-200 p-2 rounded mb-4 inline-flex items-center">
-            <ChevronLeft className="mr-2 h-4 w-4" /> Back to List
-          </button>
-          <div className="border rounded p-4 shadow">
-            <div className="mb-4">
-              <h2 className="text-xl font-bold">{selectedFarmer.name}</h2>
-              <p>{selectedFarmer.location}</p>
-            </div>
-            <div>
-              <p>Crops: {selectedFarmer.crops.join(", ")}</p>
-              <p>Acreage: {selectedFarmer.acreage}</p>
-            </div>
-            <form onSubmit={handleSubmitContract} className="mt-4 space-y-4">
-              <div>
-                <label htmlFor="crop" className="block font-semibold">Select Crop for Contract</label>
-                <select
-                  id="crop"
-                  className="border rounded w-full p-2"
-                  value={contractCrop}
-                  onChange={(e) => setContractCrop(e.target.value)}
-                  required
-                >
-                  <option value="" disabled>Select a crop</option>
-                  {selectedFarmer.crops.map((crop) => (
-                    <option key={crop} value={crop}>{crop}</option>
-                  ))}
-                </select>
+          </section>
+        </main>
+        <main className="bg-gray-100">
+          <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            {/* KisanAi */}
+            <div className="flex flex-wrap items-center justify-between mb-12">
+              <div className="w-full md:w-1/2 mb-4 md:mb-0">
+                <h3 className="text-xl font-semibold text-[#4CAF4F]">
+                  KisanAi
+                </h3>
+                <p className="text-gray-600">
+                  Leverage AI to improve crop yields and reduce costs through predictive analysis and smart recommendations.
+                </p>
               </div>
-              <div>
-                <label htmlFor="details" className="block font-semibold">Contract Details</label>
-                <textarea
-                  id="details"
-                  className="border rounded w-full p-2"
-                  placeholder="Enter contract details..."
-                  value={contractDetails}
-                  onChange={(e) => setContractDetails(e.target.value)}
-                  required
+              <div className="w-full md:w-1/2 flex justify-center">
+                <Image
+                  src="/artificial-intelligence.png"
+                  alt="KisanAi"
+                  height="100"
+                  width="100"
                 />
               </div>
-              <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Submit Contract</button>
-            </form>
+            </div>
+            {/* Forum */}
+            <div className="flex flex-wrap items-center justify-between mb-12 flex-row-reverse">
+              <div className="w-full md:w-1/2 mb-4 md:mb-0">
+                <h3 className="text-xl font-semibold text-[#4CAF4F]">
+                  Forum
+                </h3>
+                <p className="text-gray-600">
+                  Connect with a community of farmers and experts to share knowledge and experiences.
+                </p>
+              </div>
+              <div className="w-full md:w-1/2 flex justify-center">
+                <Image
+                  src="/communication.png"
+                  alt="Forum"
+                  height="100"
+                  width="100"
+                />
+              </div>
+            </div>
+            {/* Marketplace */}
+            <div className="flex flex-wrap items-center justify-between mb-12">
+              <div className="w-full md:w-1/2 mb-4 md:mb-0">
+                <h3 className="text-xl font-semibold text-[#4CAF4F]">
+                  Marketplace
+                </h3>
+                <p className="text-gray-600">
+                    Explore our digital marketplace to buy and sell produce directly, ensuring fair prices and greater reach.
+                </p>
+              </div>
+              <div className="w-full md:w-1/2 flex justify-center">
+                <Image
+                  src="/marketplace.png"
+                  alt="Marketplace"
+                  height="100"
+                  width="100"
+                />
+              </div>
+            </div>
+            {/* Videos */}
+            <div className="flex flex-wrap items-center justify-between mb-12 flex-row-reverse">
+              <div className="w-full md:w-1/2 mb-4 md:mb-0">
+                <h3 className="text-xl font-semibold text-[#4CAF4F]">
+                  Videos
+                </h3>
+                <p className="text-gray-600">
+                  
+                Access a wide range of instructional videos to learn new techniques and stay updated on the latest in agriculture.
+                
+                </p>
+              </div>
+              <div className="w-full md:w-1/2 flex justify-center">
+                <Image
+                  src="/play.png"
+                  alt="Videos"
+                  height="100"
+                  width="100"
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        </main>   
+      </div>
+      <Listings />
+    </>
   )
 }
